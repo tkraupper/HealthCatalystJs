@@ -2,7 +2,8 @@ import { ACTION_TYPES } from "../actions/people";
 import { DEFAULT_ECDH_CURVE } from "tls";
 
 const initialState ={
-    list: []
+    list: [],
+    filteredList: null
 }
 
 export const person = (state=initialState, action) =>{
@@ -29,6 +30,12 @@ export const person = (state=initialState, action) =>{
         return {
             ...state,
             list: state.list.filter(x => x.id != action.payload)
+        }
+
+        case ACTION_TYPES.SEARCH_PEOPLE:
+        return {
+            ...state,
+            filteredList: action.payload
         }
 
         default:

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "../actions/people";
-import { Grid, Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, withStyles, ButtonGroup, Button } from "@material-ui/core";
+import { Grid, Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, withStyles, TextField, ButtonGroup, Button } from "@material-ui/core";
 import PeopleForm from "./PeopleForm";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -39,13 +39,18 @@ const People = ({classes,...props}) => {
       props.deletePerson(id, ()=>addToast("Deleted successfully", { appearance: 'info' }))
   }
 
+  const displayList = props.filteredList ? props.filteredList : props.personList;
+
   return(
     <Paper className={classes.paper} elevation={3}>
       <Grid container>
-	<Grid item xs={6}>
+	<Grid item xs={4}>
 	  <PeopleForm {...({ currentId, setCurrentId })}/>
 	</Grid>
-	<Grid item xs={6}>
+	<Grid item xs={8}>
+        <div style={{paddingLeft: '18px'}}>
+            <TextField label="Search Field" onChange={e => { props.searchPeople(props.personList, e.target.value) }}></TextField>
+        </div>
 	  <TableContainer>
 	    <Table>
 	      <TableHead className={classes.root}>
@@ -60,7 +65,7 @@ const People = ({classes,...props}) => {
 	      </TableHead>
 	      <TableBody>
 		  {
-		    props.personList.map((record, index)=>{
+		    displayList.map((record, index)=>{
 		      return (<TableRow key={index} hover>
 			<TableCell>{record.firstName}</TableCell>
 			<TableCell>{record.lastName}</TableCell>
@@ -93,12 +98,14 @@ const People = ({classes,...props}) => {
 }
 
 const mapStateToProps = state => ({
-  personList: state.person.list
+  personList: state.person.list,
+  filteredList: state.person.filteredList
 })
 
 const mapActionToProps = {
   fetchAllPeople: actions.fetchAll,
-  deletePerson: actions.Delete
+  deletePerson: actions.Delete,
+  searchPeople: actions.searchPeople
 }
 
 export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(People));

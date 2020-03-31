@@ -26,7 +26,8 @@ const initialFieldValues ={
   lastName: '',
   age: '',
   address: '',
-  interests: ''
+  interests: '',
+  picture: 'default.jpg'
 }
 
 //ouputting form and ability to call useForm to perform common functions

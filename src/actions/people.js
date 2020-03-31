@@ -6,7 +6,8 @@ export const ACTION_TYPES = {
     CREATE : 'CREATE',
     UPDATE : 'UPDATE',
     DELETE : 'DELETE',
-    FETCH_ALL : 'FETCH_ALL'
+    FETCH_ALL : 'FETCH_ALL',
+    SEARCH_PEOPLE: 'SEARCH_PEOPLE'
 }
 
 const formatData = data =>({
@@ -69,3 +70,15 @@ export const Delete = (id, onSuccess) => dispatch =>{
     })
     .catch(err => console.log(err))
 }
+
+//FETCH METHOD TO RETURN LIST OF PEOPLE
+export const searchPeople = (people, searchTerm) => dispatch => {
+    let filteredPeople = null;
+    if (searchTerm != '') {
+        filteredPeople = people.filter((person)  => `${person.firstName} ${person.lastName}`.includes(searchTerm))
+    }
+        dispatch({
+            type: ACTION_TYPES.SEARCH_PEOPLE,
+            payload: filteredPeople
+        })
+    }
