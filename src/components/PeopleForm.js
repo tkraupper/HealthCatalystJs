@@ -94,8 +94,7 @@ const PeopleForm = ({classes, ...props}) => {
 	  variant="outlined" 
 	  label="First Name" 
 	  value={values.firstName} 
-	  onChange={handleInputChange} 
-	  //error={true} 
+	  onChange={handleInputChange}
 	  helperText={errors.firstName}
 	  {...(errors.firstName && {error:true, helpterText:errors.firstName})}
 	>
@@ -112,7 +111,6 @@ const PeopleForm = ({classes, ...props}) => {
 	  label="Age" 
 	  value={values.age}
 	  onChange={handleInputChange} 
-	  //error={true} 
 	  helperText={errors.age}
 	  {...(errors.age && {error:true, helperText:errors.age})}></TextField>
       </Grid>
@@ -128,7 +126,6 @@ const PeopleForm = ({classes, ...props}) => {
 	  variant="outlined" 
 	  label="Interests" 
 	  value={values.interests}
-	  //error={true} 
 	  onChange={handleInputChange} 
 	  helperText={errors.interests}
 	  {...(errors.interests && {error:true, helpterText:errors.interests})}></TextField>
