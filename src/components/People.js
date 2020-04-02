@@ -44,11 +44,11 @@ const People = ({classes,...props}) => {
   return(
     <Paper className={classes.paper} elevation={3}>
       <Grid container>
-	<Grid item xs={4}>
+	<Grid item xs={3}>
 	  <PeopleForm {...({ currentId, setCurrentId })}/>
 	</Grid>
-	<Grid item xs={8}>
-        <div style={{paddingLeft: '18px'}}>
+	<Grid item xs={9}>
+        <div style={{paddingLeft: '20px', paddingBottom: '20px'}}>
             <TextField label="Search Field" onChange={e => { props.searchPeople(props.personList, e.target.value) }}></TextField>
         </div>
 	  <TableContainer>
@@ -60,7 +60,7 @@ const People = ({classes,...props}) => {
 		  <TableCell>Age</TableCell>
 		  <TableCell>Address</TableCell>
 		  <TableCell>Interests</TableCell>
-		  <TableCell>Picture?</TableCell>
+		  <TableCell>Photo</TableCell>
 		</TableRow>
 	      </TableHead>
 	      <TableBody>
@@ -72,7 +72,7 @@ const People = ({classes,...props}) => {
 			<TableCell>{record.age}</TableCell>
 			<TableCell>{record.address}</TableCell>
 			<TableCell>{record.interests}</TableCell>
-			<TableCell>{record.picture}</TableCell>
+			<TableCell><img src={record.picture} style={{height: '75px', width: '75px'}} alt='Profile Picture'/></TableCell>
 			<TableCell>
 			  <ButtonGroup variant="text">
 			    <Button>

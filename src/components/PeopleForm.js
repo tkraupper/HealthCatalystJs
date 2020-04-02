@@ -27,7 +27,7 @@ const initialFieldValues ={
   age: '',
   address: '',
   interests: '',
-  picture: 'default.jpg'
+  picture: 'https://st2.depositphotos.com/1006318/5909/v/950/depositphotos_59095529-stock-illustration-profile-icon-male-avatar.jpg'
 }
 
 //ouputting form and ability to call useForm to perform common functions
@@ -95,9 +95,9 @@ const PeopleForm = ({classes, ...props}) => {
 	  label="First Name" 
 	  value={values.firstName} 
 	  onChange={handleInputChange} 
-	  error={true} 
+	  //error={true} 
 	  helperText={errors.firstName}
-	  //{...(errors.firstName && {error:true, helpterText:errors.firstName})}
+	  {...(errors.firstName && {error:true, helpterText:errors.firstName})}
 	>
       </TextField>
 	<TextField 
@@ -112,7 +112,7 @@ const PeopleForm = ({classes, ...props}) => {
 	  label="Age" 
 	  value={values.age}
 	  onChange={handleInputChange} 
-	  error={true} 
+	  //error={true} 
 	  helperText={errors.age}
 	  {...(errors.age && {error:true, helperText:errors.age})}></TextField>
       </Grid>
@@ -128,7 +128,7 @@ const PeopleForm = ({classes, ...props}) => {
 	  variant="outlined" 
 	  label="Interests" 
 	  value={values.interests}
-	  error={true} 
+	  //error={true} 
 	  onChange={handleInputChange} 
 	  helperText={errors.interests}
 	  {...(errors.interests && {error:true, helpterText:errors.interests})}></TextField>
